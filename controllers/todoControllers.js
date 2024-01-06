@@ -1,4 +1,3 @@
-const { where } = require("sequelize");
 const { Todo } = require("../models");
 
 class TodoControllers {

@@ -13,7 +13,7 @@ describe("Todo Routes", () => {
       })
       .catch(done);
   });
-    
+
   it("should return all todos get /todos", (done) => {
     request(app)
       .get("/todos")
@@ -65,15 +65,20 @@ describe("Todo Routes", () => {
         // Validate if the created todo matches the sent data
         expect(createdTodo.title).toBe(todoData.title);
         expect(createdTodo.status).toBe(todoData.status);
-        // Add more assertions based on your todo creation logic
-
-        // Additional cleanup or assertions as needed
 
         done();
       })
       .catch(done);
   });
 
-  
-    
+  it("should delete a todo", (done) => {
+    request(app)
+      .delete("/todos/4")
+      .expect(200)
+      .then((response) => {
+        const data1 = response.body;
+        expect(data1).toEqual({ message: "Todo succesfully deleted" });
+        done();
+      });
+  });
 });
